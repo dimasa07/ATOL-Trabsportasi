@@ -11,12 +11,12 @@ include "_partials/sidebar.php";
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Products</h1>
+                    <h1 class="m-0 text-dark"><b>Order Tiket</b></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Order Ticket</li>
+                        <li class="breadcrumb-item active">Order Tiket</li>
                     </ol>
                 </div>
             </div>
@@ -29,8 +29,8 @@ include "_partials/sidebar.php";
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            List Product
-                            <a href="#" class="btn btn-primary float-right">Tambah</a>
+                            List Tiket
+                            
                         </div>
                         <div class="card-body">
 							<!--
@@ -58,25 +58,23 @@ include "_partials/sidebar.php";
                                     <thead>
                                         <tr>
                                             <th width="10px" class="text-center">No</th>
-                                            <th>Thumbnail</th>
-                                            <th>SKU</th>
-                                            <th>Name</th>
-                                            <th>Category</th>
-                                            <th>Price</th>
-                                            <th>Status</th>
-                                            <th class="text-center">Action</th>
+                                            <th>Kereta</th>
+                                            <th>Berangkat</th>
+                                            <th>Tiba</th>
+                                            <th>Durasi</th>
+                                            <th>Harga Tiket</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php //$nomor = 0; foreach($products as $key => $row){ ?>
                                         <tr>
                                             <td class="text-center"><?php //echo ++$nomor; ?></td>
-                                            <td><img src="<?php //echo base_url('uploads/'.$row['product_image']) ?>" class="rounded-circle" width="50" height="50"></td>
+                                            <td></td>
                                             <td><?php //echo $row['product_sku']; ?></td>
                                             <td><?php //echo $row['product_name']; ?></td>
                                             <td><?php //echo $row['category_name']; ?></td>
                                             <td><?php //echo "Rp. ".number_format($row['product_price']); ?></td>
-                                            <td><?php //echo $row['product_status']; ?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a href="<?php //echo base_url('product/show/'.$row['product_id']); ?>" class="btn btn-sm btn-info">
