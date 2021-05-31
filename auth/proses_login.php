@@ -1,12 +1,25 @@
 <?php
 session_start();
 
+// apabila login sebagai admin
+if(!empty($_GET['status'])){
+	if($_GET['status']=="admin"){
+		$_SESSION['name']="Admin";
+		$_SESSION['username']="admin";
+		$_SESSION['status']="admin";
+		
+		header("location:../index.php");
+		exit;
+	}
+}
+
 //import file config untuk koneksi ke database
 require('db_config.php');
 
 $username=$_POST['username'];
 $password=$_POST['password'];
 
+// jika username atau password tidak di isi
 if($username == "" || $password == ""){
     header("location:login.php?pesan=gagal");
     //Menghentikan proses kebawah
@@ -25,7 +38,7 @@ if($cek > 0){
 	$res = mysqli_fetch_assoc($data);
 	$_SESSION['name'] = $res['fullname'];
     $_SESSION['username'] = $username;
-    $_SESSION['status'] = "login";
+    $_SESSION['status'] = "user";
     header("location:../index.php");
 }else{
     header("location:login.php?pesan=tidak_cocok");

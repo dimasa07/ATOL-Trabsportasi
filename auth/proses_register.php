@@ -36,7 +36,8 @@ if($cek > 0){
 
 //Membuat MD5 Password
 $password_new = md5($password);
-//
+
+// insert data ke database
 $result = mysqli_query($mysqli,
     "INSERT INTO `user` (`username`,`fullname`, `password`) VALUES ('$username','$fullname', '$password_new');");
 

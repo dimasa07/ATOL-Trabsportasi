@@ -29,7 +29,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="alert alert-danger">
-							Form tidak boleh ada yang kosong
+							<?php echo $txt_alert_empty_form; ?>
 						</div>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="alert alert-danger text-center">
-							Username tersebut sudah terdaftar !
+							<?php echo $txt_username_registered; ?>
 						</div>
 					</div>
 				</div>
@@ -53,7 +53,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="alert alert-danger text-center">
-							Konfirmasi password tidak benar !
+							<?php echo $txt_incorrect_password_confirm; ?>
 						</div>
 					</div>
 				</div>

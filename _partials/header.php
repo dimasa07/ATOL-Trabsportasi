@@ -3,7 +3,7 @@
 	<meta charset="utf-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>SI Penjualan Online</title>
+	<title>Transportasi Kereta</title>
 	<style type="text/css" id="debugbar_dynamic_style"></style>
 	<link rel="stylesheet" href="themes/dist/css/adminlte.min.css">
 	<link rel="stylesheet" href="themes/plugins/fontawesome-free/css/all.min.css">
@@ -21,9 +21,7 @@
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item dropdown">
-				<a class="nav-link" data-toggle="dropdown" href="#">
-					<i class="far fa-user"></i>
-				</a>
+				
 				<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 					<a href="" class="dropdown-item">
 						Logout

@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-	<a href="location" class="brand-link">
-		<img src="themes/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+	<a href="#" class="brand-link">
+		<i class="nav-icon fas">TK - </i>
 		<span class="brand-text font-weight-light">Transportasi Kereta</span>
 	</a>
 	
@@ -18,28 +18,63 @@
 				<li class="nav-item">
 					<a href="index.php" class="nav-link">
 						<i class="nav-icon fas fa-th"></i>
-						<p>Dashboard</p>
+						<p><?php echo $txt_dashboard; ?></p>
 					</a>
 				</li>
+				
+				
+				<?php
+				if($_SESSION['status']=="user"){
+				?>
 				<li class="nav-item">
 					<a href="order_ticket.php" class="nav-link">
-						<i class="nav-icon fas fa-tags"></i>
+						<i class="nav-icon fas">-</i>
 						<p><?php echo $txt_order_ticket; ?></p>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="" class="nav-link">
-						<i class="nav-icon fas fa-cart-plus"></i>
-						<p><?php echo $txt_train_list; ?></p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="" class="nav-link">
-						<i class="nav-icon fas fa-dollar-sign"></i>
+					<a href="history.php" class="nav-link">
+						<i class="nav-icon fas">-</i>
 						<p><?php echo $txt_order_history; ?></p>
 					</a>
 				</li>
 				<li class="nav-header"><?php echo $txt_account; ?></li>
+				<li class="nav-item">
+					<a href="auth/proses_login.php?status=admin" class="nav-link">
+						<i class="nav-icon far ">A</i>
+						<p class="text"><?php echo $txt_login_admin; ?></p>
+					</a>
+				</li>
+				<?php } ?>
+				<?php
+				if($_SESSION['status']=="admin"){
+				?>
+				<li class="nav-item">
+					<a href="train_list.php" class="nav-link">
+						<i class="nav-icon fas">-</i>
+						<p><?php echo $txt_train_list; ?></p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="schedule.php" class="nav-link">
+						<i class="nav-icon fas">-</i>
+						<p><?php echo $txt_train_scheduling; ?></p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="list_transaction.php" class="nav-link">
+						<i class="nav-icon fas">-</i>
+						<p><?php echo $txt_transaction_list; ?></p>
+					</a>
+				</li>
+				<li class="nav-header"><?php echo $txt_account; ?></li>
+				<li class="nav-item">
+					<a href="auth/session_logout.php" class="nav-link">
+						<i class="nav-icon far ">U</i>
+						<p class="text"><?php echo $txt_login_user; ?></p>
+					</a>
+				</li>
+				<?php } ?>
 				<li class="nav-item">
 					<a href="auth/session_logout.php" class="nav-link">
 						<i class="nav-icon far fa-circle text-danger"></i>

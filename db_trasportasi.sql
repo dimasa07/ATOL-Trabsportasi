@@ -30,33 +30,84 @@ CREATE TABLE `bahasa` (
 /*Data for the table `bahasa` */
 
 insert  into `bahasa`(`text`,`indonesia`,`inggris`) values 
+('','Masuk Sebagai Pengguna','Login as User'),
 ('account','AKUN','ACCOUNT'),
+('action','Tindakan','Action'),
+('add','Tambah','Add'),
+('add_schedule','Tambah Jadwal','Add Schedule'),
 ('alert_empty','Username dan password tidak boleh kosong !','Username and password cannot be empty !'),
+('alert_empty_form','Form harus di isi semua !','The form cannot be empty !'),
 ('alert_failed_login','Username atau Password tidak sesuai ! Silahkan daftar jika belum mempunyai akun.','Incorrect username or pasword ! Please register if you don\'t have an account.'),
+('alert_number_character','Jumlah karakter No Kereta tidak boleh lebih dari 3','The number of characters \'No Train\' cannot be more than 3'),
+('alert_registered_name_train','Nama Kereta sudah terdaftar, silahkan masukan nama kereta yang lain','The train name is already registered, please enter another train name'),
+('alert_registered_no_train','No Kereta sudah terdaftar, silahkan masukan no kereta yang lain','The train number is already registered, please enter another train number'),
+('arrives_time','Perkiraan Tiba','Arrives Time'),
+('back','Kembali','Back'),
+('booking_kode','Kode Pemesanan','Booking Kode'),
+('buy','Pesan','Buy'),
+('buyers','Pemesan','Buyers'),
+('buyers_number','Jumlah Transaksi','Number of Transactions'),
+('buyer_name','Nama Pemesan','Buyer\'s Name'),
 ('confirm','Konfirmasi','Confirm'),
+('dashboard','Beranda','Dashboard'),
+('date','Tanggal','Date'),
+('departure_time','Waktu Keberangkatan','Departure Time'),
+('duration','Durasi','Duration'),
+('from','Berangkat','From'),
 ('fullname','Nama lengkap','Fullname'),
 ('have_account?','Sudah punya akun?','Do you have account?'),
+('history_detail','Detail Riwayat','History Details'),
+('history_list','List Riwayat','History List'),
+('hour','j','h'),
+('incorrect_password_confirm','Konfirmasi password tidak benar','Password confirmation is incorrect'),
+('login_admin','Masuk Sebagai Admin','Login as Admin'),
+('login_user','Masuk Sebagai Pengguna','Login as User'),
 ('logout','Keluar','Logout'),
+('no_data','Tidak ada data','No data'),
 ('order_history','History Pemesanan','Order History'),
 ('order_ticket','Pesan Tiket','Order a Ticket'),
+('price','Harga','Price'),
 ('register','Daftar','Register'),
 ('register_caption','Daftar untuk membuat akun anda','Register to create your account'),
+('save','Simpan','Save'),
+('schedules','Jadwal','Schedules'),
+('schedules_number','Jumlah Jadwal','Number of Schedules'),
+('schedule_list','List Jadwal','Schedule List'),
+('select_train','Pilih Kereta','Select Train'),
 ('sign','Masuk','Sign in'),
 ('sign_caption','Masuk untuk memulai sesi anda','Sign in to start your session'),
+('success_add_schedule','Sukses menambahkan jadwal !','Successfully added schedule !'),
+('success_add_train','Berhasil menambahkan kereta !','Successfully added train !'),
+('success_delete','Berhasil hapus','Successfully deleted'),
+('success_delete_history','Berhasil hapus riwayat pemesanan','Successfully deleted order history'),
+('success_delete_schedule','Sukses hapus jadwal !','Successfully deleted schedule !'),
+('success_order','Sukses memesan !','Ordering was successful !'),
 ('success_register','Daftar sukses !','Success register !'),
-('train_list','List Kereta','Train List');
+('sure_delete','Yakin hapus?','Sure to delete?'),
+('tickets','Tiket','Tickets'),
+('ticket_list','List Tiket','Ticket List'),
+('to','Tiba','To'),
+('trains','Kereta','Trains'),
+('trains_number','Jumlah Kereta','Number of Trains'),
+('train_list','List Kereta','Train List'),
+('train_name','Nama Kereta','Train Name'),
+('train_scheduling','Penjadwalan Kereta','Train Scheduling'),
+('transactions','Transaksi','Transactions'),
+('transaction_list','List Transaksi','Transaction List'),
+('username_registered','Username tersebut sudah terdaftar','The username is already registered');
 
 /*Table structure for table `detail_tiket` */
 
 DROP TABLE IF EXISTS `detail_tiket`;
 
 CREATE TABLE `detail_tiket` (
-  `Kode_Booking` varchar(7) NOT NULL,
+  `Kode_Booking` int(6) NOT NULL AUTO_INCREMENT,
   `Id_TmptDuduk` varchar(11) DEFAULT NULL,
-  `Id_Jadwal` varchar(10) DEFAULT NULL,
-  `Harga` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`Kode_Booking`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Id_Jadwal` int(3) DEFAULT NULL,
+  PRIMARY KEY (`Kode_Booking`),
+  KEY `Id_Jadwal` (`Id_Jadwal`),
+  CONSTRAINT `detail_tiket_ibfk_1` FOREIGN KEY (`Id_Jadwal`) REFERENCES `jadwal` (`Id_Jadwal`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `detail_tiket` */
 
@@ -65,15 +116,27 @@ CREATE TABLE `detail_tiket` (
 DROP TABLE IF EXISTS `jadwal`;
 
 CREATE TABLE `jadwal` (
-  `Id_Jadwal` varchar(10) NOT NULL,
+  `Id_Jadwal` int(3) NOT NULL AUTO_INCREMENT,
+  `No_Kereta` varchar(3) DEFAULT NULL,
   `Berangkat` varchar(30) NOT NULL,
   `Waktu_Berangkat` datetime NOT NULL,
   `Tujuan` varchar(30) NOT NULL,
   `Perkiraan_Tiba` datetime NOT NULL,
-  PRIMARY KEY (`Id_Jadwal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Harga` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`Id_Jadwal`),
+  KEY `No_Kereta` (`No_Kereta`),
+  CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`No_Kereta`) REFERENCES `kereta` (`No_Kereta`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `jadwal` */
+
+insert  into `jadwal`(`Id_Jadwal`,`No_Kereta`,`Berangkat`,`Waktu_Berangkat`,`Tujuan`,`Perkiraan_Tiba`,`Harga`) values 
+(1,'M02','Solo(SOL)','2021-06-23 17:40:00','Garut(GRT)','2021-06-23 21:20:00',230000),
+(2,'P01','Banten(BNT)','2021-06-24 07:20:00','Palembang(PAL)','2021-06-24 12:11:00',140000),
+(3,'S01','Medan(MED)','2021-06-26 08:22:00','Bali(BAL)','2021-06-26 18:41:00',190000),
+(4,'B01','Cirebon Prujakan(CNP)','2021-06-29 09:50:00','Purwokerto(PWT)','2021-06-29 14:31:00',200000),
+(27,'B01','2021-06-02T09:15','2021-06-02 09:15:00','Garut','2021-06-02 10:15:00',50000),
+(29,'S01','Surabaya','2021-06-05 09:27:00','Ciamis','2021-06-05 11:28:00',210000);
 
 /*Table structure for table `kereta` */
 
@@ -87,6 +150,13 @@ CREATE TABLE `kereta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `kereta` */
+
+insert  into `kereta`(`No_Kereta`,`Nama_Kereta`,`Kelas`) values 
+('B01','Bengawan','Ekonomi'),
+('M01','Malabar','Bisnis'),
+('M02','Mataram','Bisnis'),
+('P01','Progo','Ekonomi'),
+('S01','Sancaka','Eksklusif');
 
 /*Table structure for table `penumpang` */
 
@@ -116,18 +186,20 @@ CREATE TABLE `tempat_duduk` (
 
 /*Data for the table `tempat_duduk` */
 
-/*Table structure for table `tiket_kereta` */
+/*Table structure for table `tiket_dibeli` */
 
-DROP TABLE IF EXISTS `tiket_kereta`;
+DROP TABLE IF EXISTS `tiket_dibeli`;
 
-CREATE TABLE `tiket_kereta` (
-  `Kode_Booking` varchar(7) NOT NULL,
-  `No_Identitas` varchar(40) DEFAULT NULL,
-  `Check_In` datetime NOT NULL,
-  PRIMARY KEY (`Kode_Booking`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `tiket_dibeli` (
+  `Kode_Booking` int(6) NOT NULL AUTO_INCREMENT,
+  `Username` varchar(30) DEFAULT NULL,
+  `Tanggal` datetime NOT NULL,
+  PRIMARY KEY (`Kode_Booking`),
+  KEY `Username` (`Username`),
+  CONSTRAINT `tiket_dibeli_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `tiket_kereta` */
+/*Data for the table `tiket_dibeli` */
 
 /*Table structure for table `tipe` */
 
@@ -151,6 +223,8 @@ CREATE TABLE `user` (
   `password` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `user` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
